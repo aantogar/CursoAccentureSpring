@@ -1,6 +1,7 @@
 package rf.com.controller;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -22,12 +23,17 @@ import rf.com.repository.ICategoriaRepo;
 public class CategoriaController {
 
 	
-	 @Autowired
+	 @Autowired 
 	    private ICategoriaRepo cDao;
 	
 	@GetMapping("/{id}")
-	public Categoria leerUno(@PathVariable("id")int id) {
-		return cDao.findById(id).get();
+	public String[] leerUno(@PathVariable("id")int id) {
+		try {
+			Categoria c=cDao.findById(id).get();
+			return new String[] {"200",c.toString()};
+		}catch(NoSuchElementException e) {
+			return new String[] {"400","No existe registro solicitado"};
+		}
 	}
 	
 	@GetMapping()

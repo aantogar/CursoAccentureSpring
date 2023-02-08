@@ -1347,3 +1347,10 @@ Caused by: org.eclipse.core.runtime.CoreException: Cannot determine URI for '/Ti
 2023-02-08 16:47:57,790 [Worker-3: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\andrea.anton.garcia\Documents\AreadeTrabajoSpring\S4TiendaSpring\src\test\resources
 2023-02-08 16:47:59,390 [Worker-23: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
 2023-02-08 16:47:59,428 [Worker-23: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2023-02-08 16:47:59,434 [Worker-23: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\andrea.anton.garcia\Documents\AreadeTrabajoSpring\S4TiendaSpring\src\test\resources
+2023-02-08 16:50:38,358 [Worker-21: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2023-02-08 16:50:38,395 [Worker-21: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2023-02-08 16:50:38,401 [Worker-21: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\andrea.anton.garcia\Documents\AreadeTrabajoSpring\S4TiendaSpring\src\test\resources
+2023-02-08 16:53:40,606 [Worker-27: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2023-02-08 16:53:40,613 [Worker-27: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2023-02-08 16:53:40,617 [Worker-27: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\andrea.anton.garcia\Documents\AreadeTrabajoSpring\S4TiendaSpring\src\test\resources
