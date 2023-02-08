@@ -42,34 +42,26 @@ public class CategoriaController {
 	public List<Categoria>leerTodos() {
 		return cDao.findAll();
 	}
+	@PutMapping
+	public String[] updateCategoria(@RequestBody Categoria category) {
+		cDao.save(category);
+		return new String[] {"200", "Modificado"};
+	}
+	
 	@DeleteMapping("/{id}")
-	public void  deleteCategoriaById(@PathVariable("id") int id) {
+	public void deleteCategoriaById(@PathVariable("id") int id) {
 		cDao.deleteById(id);
 	}
 	
 	@DeleteMapping
-	public void deleteCategoria(Categoria cat) {
-		deleteCategoriaById(cat.getId_categoria());
+	public void eliminarCategoria(Categoria category) {
+		deleteCategoriaById(category.getId_categoria());
 	}
 	
 	@PostMapping
-	public String[] insertar(@RequestBody Categoria cat){
-		
-		cat.setId_categoria(1);
-		cDao.save(cat);
-		return new String[] {"200", "Salvado"};
-	}
-	
-	@PutMapping
-	public String[] updateCategoria(@RequestBody Categoria cat) {
-		cDao.save(cat);
-		return new String[] {"200", "Modificado"};
-	}
-	
-	@PostMapping
-	public String[]alta (@RequestBody Categoria c){
+	public String[]alta ( @RequestBody  Categoria c){
 		c.setId_categoria(0);
-		if(c.isValid()) {
+		if(c!=null) {
 		cDao.save(c);
 		return new String[] {"200","Registro guardado"};
 	}else {
