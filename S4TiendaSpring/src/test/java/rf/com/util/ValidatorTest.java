@@ -54,6 +54,10 @@ class ValidatorTest {
 	private final String ALFANUM_EXC="###444$$$jjj";
 	private final double PRO_PRECIO_BUENO=20.30;
 	private final double PRO_PRECIO_FALSE=2030;
+	private final String VALOR_A="A";
+	private final String VALOR_B="B";
+	private final String PRUEBA_STAT="A";
+	private final String PRUEBA_STAT_FALSE="nocumple";
 	
 	
 	//generamos los test
@@ -75,6 +79,18 @@ class ValidatorTest {
 	
 	void cumplePrecioProducDos() {
 		assertFalse(Validator.cumplePrecioProduc(PRO_PRECIO_FALSE));
+	}
+	
+	@Test
+	
+	void cumpleRangoStat() {
+		assertTrue(Validator.cumpleRangoStat(PRUEBA_STAT, VALOR_B, VALOR_A));
+	}
+	
+@Test
+	
+	void cumpleRangoStatDos() {
+		assertFalse(Validator.cumpleRangoStat(PRUEBA_STAT_FALSE, VALOR_B, VALOR_A));
 	}
 	
 	@Test

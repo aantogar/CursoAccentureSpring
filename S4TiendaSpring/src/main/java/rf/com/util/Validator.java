@@ -237,6 +237,29 @@ public class Validator {
 		//devuelve true si valor es mayor que el mínimo y menor que el máximo
 		return (int)valor >= valorMinimo && (int)valor <= valorMaximo;
 	}
+	
+	/** ***************************************************************************************
+	 * NOMBRE: cumpleRango                                                                 *
+	 * 
+	 * DESCRIPCIÓN: 
+	 * 		Comprueba que un número se necuentra entre 2 valores
+	 * 
+	 * @param valor String valor a comprobar
+	 * @param valorA String  valor aceptable
+	 * @param valorB String valor aceptable
+	 * 
+	 * @return true si valorA == valor || valor== valorB
+	 * FECHA: Enero 2023
+	 * AUTOR: Andrea Anton 
+	 * 
+	 * **************************************************************************************/
+	public static boolean cumpleRangoStat(
+			String valor, 
+			String valorA,
+			String valorB){
+		//devuelve true si valor es mayor que el mínimo y menor que el máximo
+		return valor.equalsIgnoreCase(valorA) || valor.equalsIgnoreCase(valorB);
+	}
 
 
 	/* ***************************************************************************************
