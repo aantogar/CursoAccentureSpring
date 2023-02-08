@@ -1,0 +1,7 @@
+package rf.com.repository;
+import rf.com.dominio.Categoria;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ICategoriaRepo extends JpaRepository<Categoria,Integer> {
+
+}

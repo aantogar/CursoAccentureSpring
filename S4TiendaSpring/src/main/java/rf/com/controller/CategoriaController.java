@@ -21,11 +21,6 @@ import rf.com.repository.ICategoriaRepo;
 @RequestMapping("/categorias")
 public class CategoriaController {
 
-	/*private rf.com.repository.ICategoriaRepo cDao;
-	public void ICategoriaRepo(ICategoriaRepo cDao) {
-		this.cDao=cDao;
-	}*/
-	
 	
 	 @Autowired
 	    private ICategoriaRepo cDao;

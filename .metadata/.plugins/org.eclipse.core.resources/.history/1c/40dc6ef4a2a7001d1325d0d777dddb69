@@ -1,0 +1,5 @@
+package rf.com.controller;
+
+public @interface RequestController {
+
+}
