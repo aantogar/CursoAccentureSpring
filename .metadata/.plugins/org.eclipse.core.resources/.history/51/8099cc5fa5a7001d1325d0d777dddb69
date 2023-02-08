@@ -1,7 +1,0 @@
-package rf.com.repository;
-import rf.com.dominio.Categoria;
-
-
-public interface ICategoriaRepo extends JpaRepository<Categoria,Integer> {
-
-}

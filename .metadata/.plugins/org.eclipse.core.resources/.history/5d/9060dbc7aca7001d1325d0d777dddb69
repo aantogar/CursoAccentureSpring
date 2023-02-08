@@ -1,9 +1,0 @@
-package rf.com.main;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-@SpringBootApplication
-public class S4TiendaSpring{
-	public static void main(String[] args) {
-        SpringApplication.run(TiendaSpring14Application.class, args);
-    } }
