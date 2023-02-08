@@ -1,5 +1,0 @@
-package rf.com.services;
-
-public interface iServicioCategoria {
-
-}
