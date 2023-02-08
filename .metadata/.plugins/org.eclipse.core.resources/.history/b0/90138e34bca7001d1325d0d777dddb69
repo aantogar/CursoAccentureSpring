@@ -1,0 +1,13 @@
+package rf.com;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+
+
+@SpringBootApplication(scanBasePackages = "rf.com.",exclude= {DataSourceAutoConfiguration.class})
+public class S4TiendaSpringApplication{
+	public static void main(String[] args) {
+		SpringApplication.run(S4TiendaSpringApplication.class, args);
+	}
+}

@@ -1,0 +1,9 @@
+package rf.com.interfacesDao;
+
+
+
+
+public interface InterfacesDAO<T> {
+	
+	
+}

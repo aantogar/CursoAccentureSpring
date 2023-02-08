@@ -23,8 +23,8 @@ import rf.com.repository.ICategoriaRepo;
 public class CategoriaController {
 
 	
-	 @Autowired 
-	    private ICategoriaRepo cDao;
+	@Autowired 
+	private ICategoriaRepo cDao;
 	
 	@GetMapping("/{id}")
 	public String[] leerUno(@PathVariable("id")int id) {
@@ -32,7 +32,7 @@ public class CategoriaController {
 			Categoria c=cDao.findById(id).get();
 			return new String[] {"200",c.toString()};
 		}catch(NoSuchElementException e) {
-			return new String[] {"400","No existe registro solicitado"};
+			return new String[] {"400","No se ha podido recuperar el registro"};
 		}
 	}
 	
@@ -44,9 +44,11 @@ public class CategoriaController {
 	@PostMapping
 	public String[]alta (@RequestBody Categoria c){
 		c.setId_categoria(0);
+		if(c.isValid()) {
 		cDao.save(c);
 		return new String[] {"200","Registro guardado"};
+	}else {
+		return new String[] {"500","Registro no guardado"};
+		}
 	}
-	
-
 }

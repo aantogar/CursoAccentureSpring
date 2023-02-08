@@ -5,6 +5,7 @@ import java.io.Serializable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
@@ -22,7 +23,7 @@ import rf.com.util.Validator;
 @Table(schema="ALUMNO_AAG",name = "COUNTRIES_AAG")
 public class Categoria implements Serializable {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id_categoria;			
 	
 	@Column(nullable=false)
@@ -44,7 +45,7 @@ public class Categoria implements Serializable {
 	 * Getter para identificador de categoria
 	 * @return Integer con el id de la categoria
 	 */
-	@Transient
+
 	public int getId_categoria() {
 		return id_categoria;
 	}
