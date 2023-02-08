@@ -6,9 +6,11 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,6 +41,29 @@ public class CategoriaController {
 	@GetMapping()
 	public List<Categoria>leerTodos() {
 		return cDao.findAll();
+	}
+	@DeleteMapping("/{id}")
+	public void  deleteCategoriaById(@PathVariable("id") int id) {
+		cDao.deleteById(id);
+	}
+	
+	@DeleteMapping
+	public void deleteCategoria(Categoria cat) {
+		deleteCategoriaById(cat.getId_categoria());
+	}
+	
+	@PostMapping
+	public String[] insertar(@RequestBody Categoria cat){
+		
+		cat.setId_categoria(1);
+		cDao.save(cat);
+		return new String[] {"200", "Salvado"};
+	}
+	
+	@PutMapping
+	public String[] updateCategoria(@RequestBody Categoria cat) {
+		cDao.save(cat);
+		return new String[] {"200", "Modificado"};
 	}
 	
 	@PostMapping
