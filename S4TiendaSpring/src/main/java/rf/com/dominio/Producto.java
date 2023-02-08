@@ -34,12 +34,32 @@ public class Producto {
 	private final LocalDate FECHA_ACTUAL=LocalDate.now();
 	private final int MAX_DESC_COR=100;
 	private final int MAX_DESC_LAR=2000;
+	private final char VALOR_A='A';
+	private final char VALOR_B='B';
+	
 	
 	/**
 	 * Constructor
 	 * @throws Exception
 	 */
-	public Producto() {
+	public Producto() throws Exception {
+		setId_producto(id_producto);
+		setPro_descripcion(pro_descripcion);
+		setPro_desLarga(pro_desLarga);
+		setPro_precio(pro_precio);
+		setStock(stock);
+		setPro_fecRepos( pro_fecRepos);
+		setPro_fecActi(pro_fecActi);
+		setPro_fecDesacti(pro_fecDesacti);
+		setPro_uniVenta(pro_uniVenta);
+		setPro_cantXUniVenta(pro_cantXUniVenta);
+		setPro_uniUltNivel(pro_uniUltNivel);
+		setId_pais(id_pais);
+		setPro_usoRecomendado(pro_usoRecomendado);
+		setPro_stkReservado(pro_stkReservado);
+		setPro_nStkAlto(pro_nStkAlto);
+		setPro_nStkBajo(pro_nStkBajo);
+		setPro_stat(pro_stat);
 		
 	}
 	
@@ -125,6 +145,13 @@ public class Producto {
 	 * Aplicamos el filtro de fecha minima o mayor a la actual
 	 * 
 	 */
+	public void setPro_fecRepos(LocalDate pro_fecRepos) throws Exception {
+		if(Validator.valDateMin(pro_fecRepos, LocalDate.now())) {
+			this.pro_fecRepos = pro_fecRepos;
+		}else {
+			throw new Exception(ErrorMessages.PROERR_007);
+		}
+	}
 
 	public LocalDate getPro_fecActi() {
 		return pro_fecActi;
@@ -159,6 +186,7 @@ public class Producto {
 		}else
 			throw new Exception(ErrorMessages.PROERR_007);
 	}
+	
 	public String getPro_uniVenta() {
 		return pro_uniVenta;
 	}
@@ -225,8 +253,18 @@ public class Producto {
 	public char getPro_stat() {
 		return pro_stat;
 	}
-	public void setPro_stat(char pro_stat) {
-		this.pro_stat = pro_stat;
+	
+	/**
+	 * Aplicamos filtro para saber que cumple el carácter a introducir
+	 * @param pro_stat
+	 * @throws Exception 
+	 */
+	public void setPro_stat(char pro_stat) throws Exception {
+		if(Validator.cumpleRangoStat(pro_stat, VALOR_A, VALOR_B)){
+			this.pro_stat = pro_stat;
+		}else 
+			throw new Exception(ErrorMessages.PROERR_012);
+		
 	}
 	
 	

@@ -54,10 +54,11 @@ class ValidatorTest {
 	private final String ALFANUM_EXC="###444$$$jjj";
 	private final double PRO_PRECIO_BUENO=20.30;
 	private final double PRO_PRECIO_FALSE=2030;
-	private final String VALOR_A="A";
-	private final String VALOR_B="B";
-	private final String PRUEBA_STAT="A";
-	private final String PRUEBA_STAT_FALSE="nocumple";
+	private final char VALOR_A='A';
+	private final char VALOR_B='B';
+	private final char PRUEBA_STAT='A';
+	private final char PRUEBA_STAT_DOS='B';
+	private final char PRUEBA_STAT_FALSE='X';
 	
 	
 	//generamos los test

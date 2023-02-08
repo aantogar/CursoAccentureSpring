@@ -254,11 +254,11 @@ public class Validator {
 	 * 
 	 * **************************************************************************************/
 	public static boolean cumpleRangoStat(
-			String valor, 
-			String valorA,
-			String valorB){
+			char valor, 
+			char valorA,
+			char valorB){
 		//devuelve true si valor es mayor que el mínimo y menor que el máximo
-		return valor.equalsIgnoreCase(valorA) || valor.equalsIgnoreCase(valorB);
+		return valor==valorA || valor==valorB;
 	}
 
 
