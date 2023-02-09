@@ -64,9 +64,6 @@ public class ServicioCategoria  implements IServicioCategoria{
 			return new String[] {"400", "No existe registro solicitado"};
 		}
 	}
-	/**
-	 * Método para eliminar todas las categorias
-	 */
 	
 	/**
 	 * Método que lee todos los registros
