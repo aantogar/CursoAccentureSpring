@@ -13,7 +13,7 @@ package rf.com.util;
  *  @author 	Miguel Garcia
  *  
  *  *****************************************************/
-public class ErrorMessages {
+public class ErrorMessages extends Exception{
 	
 	
 		
@@ -56,6 +56,10 @@ public class ErrorMessages {
 	 */
 	public static final String PROERR_012="El formato introducido no es correcto";
 	
+	/**
+	 * Campo de Error para dominio Categoria isValidinsert/isValidUpdate
+	 */
+	public static final String PROERR_013="ERROR. No se puede insertar";
 	
 	
 

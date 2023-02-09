@@ -2,6 +2,7 @@ package rf.com.dominio;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,9 +13,12 @@ import rf.com.util.Validator;
 class ProductoTest {
 	//Constantes declaradas para testear
 	private final String ID_PRODUCT="HB123";
-	private final String ID_PRODUCT_FALSE="1123PO";
-	
-	
+	private final String ID_PRODUCT_FALSE="HM122";
+	private final String ID_PRODUCT_THROWS="98276";
+	private final String PRO_DESC_TRUE="Esto es una descripción buena";
+	private final String PRO_DESC_FALSE="Esto es una descripción FALSE";
+	private final String PRO_LARG_TRUE="Esto es una descripción buena,Esto es una descripción buena,Esto es una descripción buena";
+	private final String PRO_LARGA_FALSE="Esto es una descripción FALSE,Esto es una descripción FALSE,Esto es una descripción FALSE";
 	
 	
 	
@@ -23,16 +27,26 @@ class ProductoTest {
 	
 	
 	Producto prod;
-	
+	private String PRO_DES_LAR;
+	/**
+	 * Instanciamos un nuevo objeto de Producto
+	 * antes de cada test
+	 * @throws Exception
+	 */
 	@BeforeEach
 	void startObject() throws Exception {
-	prod=Mockito.mock(Producto.class);
+	prod=new Producto();
 		
 	}
 
-
+	/**
+	 * Tests que comparan, que devuelvan el getter
+	 * lo que se obtiene de setter y comprobamos 
+	 * las expcepciones  que lanza cada setter
+	 * @throws Exception
+	 */
 	
-
+	//ID_PRODUCTO
 	@Test
 	void testSetId_producto() throws Exception {
 		prod.setId_producto(ID_PRODUCT);
@@ -44,27 +58,38 @@ class ProductoTest {
 		prod.setId_producto(ID_PRODUCT_FALSE);
 		assertNotEquals(ID_PRODUCT,prod.getId_producto());
 	}
-
-
 	@Test
-	void testSetPro_descripcion() {
-		
+	void testSetId_productoThrows() throws Exception {
+		Exception thrown= Assertions.assertThrows(Exception.class, () -> {
+			prod.setId_producto(ID_PRODUCT_THROWS);},"Formato codigo erroneo");
+		Assertions.assertEquals("Formato codigo erroneo", thrown.getMessage());
 	}
 
+	//PRO_DESCRIPCION
 	@Test
-	void testGetPro_desLarga() {
-		fail("Not yet implemented");
+	void testSetPro_descripcion() throws Exception {
+		prod.setPro_descripcion(PRO_DESC_TRUE);
+		assertEquals(PRO_DESC_TRUE,prod.getPro_descripcion());
+	}
+	@Test
+	void testSetPro_descripcionFalse() throws Exception {
+		prod.setPro_descripcion(PRO_DESC_TRUE);
+		assertNotEquals(PRO_DESC_FALSE,prod.getPro_descripcion());
 	}
 
+	//PRO_DESLARGA
 	@Test
-	void testSetPro_desLarga() {
-		fail("Not yet implemented");
+	void testSetPro_desLarga() throws Exception {
+		prod.setPro_desLarga(PRO_LARG_TRUE);
+		assertEquals(PRO_LARG_TRUE,prod.getPro_desLarga());
+	}
+	@Test
+	void testSetPro_desLargaFalse() throws Exception {
+		prod.setPro_desLarga(PRO_LARGA_FALSE);
+		assertNotEquals(PRO_LARG_TRUE,prod.getPro_desLarga());
 	}
 
-	@Test
-	void testGetPro_precio() {
-		fail("Not yet implemented");
-	}
+	//PRO_PRECIO
 
 	@Test
 	void testSetPro_precio() {

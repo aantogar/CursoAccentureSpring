@@ -43,23 +43,7 @@ public class Producto {
 	 * @throws Exception
 	 */
 	public Producto() throws Exception {
-		setId_producto(id_producto);
-		setPro_descripcion(pro_descripcion);
-		setPro_desLarga(pro_desLarga);
-		setPro_precio(pro_precio);
-		setStock(stock);
-		setPro_fecRepos( pro_fecRepos);
-		setPro_fecActi(pro_fecActi);
-		setPro_fecDesacti(pro_fecDesacti);
-		setPro_uniVenta(pro_uniVenta);
-		setPro_cantXUniVenta(pro_cantXUniVenta);
-		setPro_uniUltNivel(pro_uniUltNivel);
-		setId_pais(id_pais);
-		setPro_usoRecomendado(pro_usoRecomendado);
-		setPro_stkReservado(pro_stkReservado);
-		setPro_nStkAlto(pro_nStkAlto);
-		setPro_nStkBajo(pro_nStkBajo);
-		setPro_stat(pro_stat);
+
 		
 	}
 	
@@ -83,6 +67,7 @@ public class Producto {
 		}else 
 			throw new Exception(ErrorMessages.PROERR_001);
 	}
+	
 	public String getPro_descripcion() {
 		return pro_descripcion;
 	}

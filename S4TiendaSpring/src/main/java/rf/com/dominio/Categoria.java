@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
+import rf.com.util.ErrorMessages;
 import rf.com.util.Validator;
 /**
  * 
@@ -20,7 +21,7 @@ import rf.com.util.Validator;
  */
 @SuppressWarnings("serial")
 @Entity
-@Table(schema="ALUMNO_AAG",name = "COUNTRIES_AAG")
+@Table(schema="ALUMNO_AAG",name = "CATEGORIES_AAG")
 public class Categoria implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -90,6 +91,24 @@ public class Categoria implements Serializable {
 	 */
 	public void setCat_descripcion(String cat_descripcion) {
 		this.cat_descripcion = cat_descripcion;
+	}
+	
+	@Transient 
+	public boolean isValidInsert() throws Exception {
+		boolean res=!Validator.isVacio(cat_nombre);
+		if(res)
+			return res;
+		else
+			throw new Exception(ErrorMessages.PROERR_013);				
+	}
+	@Transient
+	public boolean isValidUpdate() throws Exception{
+		boolean res=!Validator.isVacio(cat_nombre) &&
+				id_categoria > 0;
+		if(res)
+			return res;
+		else
+			throw new Exception(ErrorMessages.PROERR_013);	
 	}
 
 

@@ -1,7 +1,9 @@
 package rf.com.services;
 
-import rf.com.dominio.Categoria;
+import org.springframework.stereotype.Service;
 
-public interface iServicioCategoria  extends ServicesDao<Categoria>{
+@Service
+public interface IServicioCategoria{
+	
 
 }

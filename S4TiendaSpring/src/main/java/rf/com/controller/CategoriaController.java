@@ -49,14 +49,15 @@ public class CategoriaController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public void deleteCategoriaById(@PathVariable("id") int id) {
-		cDao.deleteById(id);
-	}
+	public String[] borrarCategoria(@PathVariable("id") int id){
+		try {
+			cDao.deleteById(id);
+			return new String[] {"200", "Registro eliminado"};
+		}catch (NoSuchElementException e) {
+			return new String[] {"400", "No existe registro solicitado"};
+		}
+	}	
 	
-	@DeleteMapping
-	public void eliminarCategoria(Categoria category) {
-		deleteCategoriaById(category.getId_categoria());
-	}
 	
 	@PostMapping
 	public String[]alta ( @RequestBody  Categoria c){
@@ -65,7 +66,7 @@ public class CategoriaController {
 		cDao.save(c);
 		return new String[] {"200","Registro guardado"};
 	}else {
-		return new String[] {"500","Registro no guardado"};
+		return new String[] {"400","Registro no guardado"};
 		}
 	}
 }
