@@ -37,11 +37,6 @@ public class Categoria implements Serializable {
 	public Categoria(){}
 	
 	@Transient
-	public boolean isValid(){	
-		return !Validator.isVacio(cat_nombre) &&
-				id_categoria > 0;
-	}
-	
 	/**
 	 * Getter para identificador de categoria
 	 * @return Integer con el id de la categoria
@@ -94,21 +89,23 @@ public class Categoria implements Serializable {
 	}
 	
 	@Transient 
-	public boolean isValidInsert() throws Exception {
+	public boolean isValidInsert() {
 		boolean res=!Validator.isVacio(cat_nombre);
 		if(res)
 			return res;
-		else
-			throw new Exception(ErrorMessages.PROERR_013);				
+		else {
+			System.out.println(ErrorMessages.PROERR_013);
+			return false;}
 	}
 	@Transient
-	public boolean isValidUpdate() throws Exception{
+	public boolean isValidUpdate() {
 		boolean res=!Validator.isVacio(cat_nombre) &&
 				id_categoria > 0;
 		if(res)
 			return res;
-		else
-			throw new Exception(ErrorMessages.PROERR_013);	
+		else {
+			System.out.println(ErrorMessages.PROERR_013);
+			return false;}		
 	}
 
 

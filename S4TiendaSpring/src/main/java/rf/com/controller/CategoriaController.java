@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.annotation.Resource;
 import rf.com.dominio.Categoria;
 import rf.com.repository.ICategoriaRepo;
+import rf.com.services.IServicioCategoria;
 
 @RestController
 @RequestMapping("/categorias")
@@ -26,47 +27,33 @@ public class CategoriaController {
 
 	
 	@Autowired 
-	private ICategoriaRepo cDao;
+	private IServicioCategoria serviceC;
 	
 	@GetMapping("/{id}")
-	public String[] leerUno(@PathVariable("id")int id) {
-		try {
-			Categoria c=cDao.findById(id).get();
-			return new String[] {"200",c.toString()};
-		}catch(NoSuchElementException e) {
-			return new String[] {"400","No se ha podido recuperar el registro"};
-		}
+	public Categoria leerUno(@PathVariable("id")int id) {
+		return serviceC.readOne(id);
 	}
 	
 	@GetMapping()
 	public List<Categoria>leerTodos() {
-		return cDao.findAll();
+		return serviceC.readAll();
 	}
 	@PutMapping
-	public String[] updateCategoria(@RequestBody Categoria category) {
-		cDao.save(category);
-		return new String[] {"200", "Modificado"};
+	public boolean updateCategoria(@RequestBody Categoria category) {
+		return serviceC.updateRegistro(category);
 	}
 	
 	@DeleteMapping("/{id}")
 	public String[] borrarCategoria(@PathVariable("id") int id){
-		try {
-			cDao.deleteById(id);
-			return new String[] {"200", "Registro eliminado"};
-		}catch (NoSuchElementException e) {
-			return new String[] {"400", "No existe registro solicitado"};
-		}
+		return serviceC.deleteById(id);
 	}	
 	
 	
 	@PostMapping
-	public String[]alta ( @RequestBody  Categoria c){
-		c.setId_categoria(0);
-		if(c!=null) {
-		cDao.save(c);
-		return new String[] {"200","Registro guardado"};
-	}else {
-		return new String[] {"400","Registro no guardado"};
-		}
+	public boolean insertarRegistro( @RequestBody  Categoria c) {
+		return serviceC.insertRegistro(c);
 	}
+
+
+	
 }
