@@ -5,7 +5,9 @@ import rf.com.util.ErrorMessages;
 import rf.com.util.Validator;
 
 public class Direccion {
-	//Atributos de la clase Direccion
+	/**
+	 * Atributos de la clase Direccion
+	 */
 	private String dir_nombre;
 	private String dir_direccion;
 	private String dir_poblacion;
@@ -14,32 +16,24 @@ public class Direccion {
 	private String dir_pais;
 	private String dir_correoE;
 	
-	//generamos constantes necesarias para aplicar a los filtros.
+	/**
+	 * Generamos constantes necesarias para aplicar a los filtros.
+	 */
 	private static int MIN_CARAC=5;
 	private static int MAX_CARAC=5;
 	
-	
-	
-	//generamos un constructor vacio
+	/**
+	 * Generamos un constructor vacio
+	 */
 	public Direccion() {
 		
 	}
-	//generamos constructor con sus parámetros
-	public Direccion(String dir_name,String dir_direc, String dir_pobl, String cPos,
-			String prov, String pais, String corr) throws Exception {
-		//la damos el valor a las variables  de los atributos
-		this.dir_direccion=dir_direc;
-		this.dir_poblacion=dir_pobl;
-		this.dir_cPostal=cPos;
-		this.dir_provincia=prov;
-		this.dir_pais=pais;
-		this.dir_correoE=corr;
-		
-		//setters de los filtros aplicados
-		setDir_nombre(dir_name);
-		
-			
-	}
+
+	
+	/**
+	 * getters & setters
+	 * @return
+	 */
 	public String getDir_nombre() {
 		return dir_nombre;
 	}

@@ -8,7 +8,7 @@ import rf.com.util.Validator;
 public class DomainException extends Exception {
 
 	public DomainException(String error) {
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	
