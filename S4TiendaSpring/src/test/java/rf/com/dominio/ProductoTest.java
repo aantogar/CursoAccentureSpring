@@ -19,12 +19,11 @@ class ProductoTest {
 	private final String PRO_DESC_FALSE="Esto es una descripción FALSE";
 	private final String PRO_LARG_TRUE="Esto es una descripción buena,Esto es una descripción buena,Esto es una descripción buena";
 	private final String PRO_LARGA_FALSE="Esto es una descripción FALSE,Esto es una descripción FALSE,Esto es una descripción FALSE";
+	private final double PRO_PRECIO=100.00;
+	private final double PRO_PREC_FALSE=100L;
 	
 	
-	
-	
-	
-	
+		
 	
 	Producto prod;
 	private String PRO_DES_LAR;
@@ -93,14 +92,16 @@ class ProductoTest {
 
 	@Test
 	void testSetPro_precio() {
-		fail("Not yet implemented");
+		prod.setPro_precio(PRO_PRECIO);
+		assertEquals(PRO_PRECIO,prod.getPro_precio());
 	}
-
 	@Test
-	void testGetStock() {
-		fail("Not yet implemented");
+	void testSetPro_precioFalse() {
+		prod.setPro_precio(PRO_PREC_FALSE);
+		assertNotEquals(PRO_PRECIO,prod.getPro_precio());
 	}
 
+	//Stock
 	@Test
 	void testSetStock() {
 		fail("Not yet implemented");

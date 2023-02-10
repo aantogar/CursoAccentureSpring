@@ -25,10 +25,8 @@ public class ServicioCategoria  implements IServicioCategoria{
 	public boolean insertRegistro(Categoria c) {
 		if(c.isValidInsert()) {
 			cDao.save(c);
-			System.out.println("Saved");
 			return true;
 		}else {
-			System.out.println("Error");
 			return false;
 		}	
 	}

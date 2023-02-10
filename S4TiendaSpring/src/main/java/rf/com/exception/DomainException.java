@@ -6,6 +6,10 @@ import rf.com.util.Validator;
 
 @SuppressWarnings("serial")
 public class DomainException extends Exception {
+
+	public DomainException(String error) {
+		// TODO Auto-generated constructor stub
+	}
 	
 	
 	

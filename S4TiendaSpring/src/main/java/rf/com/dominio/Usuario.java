@@ -1,11 +1,14 @@
 package  rf.com.dominio;
 
+import rf.com.exception.DomainException;
 import rf.com.util.*;
 
 import java.time.LocalDate;
 
 public class Usuario {
-	//declaramos los atributos de la clase Usuario
+	/**
+	 * declaramos los atributos de la clase Usuario
+	 */
 	private static int id_usuario;
 	private String user_nombre;
 	private String user_email;
@@ -17,40 +20,26 @@ public class Usuario {
 	private String user_pago;
 	private String user_envio;
 	
-	//variables generadas para aplicar los filtros
+	/**
+	 * variables generadas para aplicar los filtros
+	 */
 	private final LocalDate FECHA_ACTUAL=LocalDate.now();
 	private final int MAX_CARAC=200;
 	
-	//iniciamos un contador para autoincrementar el ID
+	/**
+	 * iniciamos un contador para autoincrementar el ID
+	 */
 	private static int contador=0;
 	
-	//generamos constructor vacio
+	/**
+	 * generamos constructor vacio
+	 */
 	public Usuario() {
-		
-	}
-	
-	//generamos constructor con sus atributos
-	public Usuario(String name,String email, String pass,int tipo,String dni,
-			LocalDate fech_alt,LocalDate fech_conf,String pago,
-			String envio)throws Exception{
 		//autoincrementamos el ID
-		setId_usuario();
-		
-		//atribuimos los parámetros a sus atributos
-		this.id_tipo=tipo;
-		this.user_envio=envio;
-		this.user_pago=pago;
-		
-		//llamamos a los setter que hemos aplicado los filtros.
-		setUser_nombre(name);
-		setUser_email(email);
-		setUser_dni(dni);
-		setUser_pass(pass);
-		setUser_fecAlta(fech_alt);
-		setUser_fecConfirmacion(fech_conf); 
-			
+		setId_usuario();	
 	}
 	
+
 
 	public static int getId_usuario() {
 		return contador;
@@ -63,50 +52,67 @@ public class Usuario {
 	public String getUser_name() {
 		return user_nombre;
 	}
-
-	public void setUser_nombre(String user_name) throws Exception {
-		//(aplicamos el filtro para saber si cumple el max longitud
+	
+	/**
+	 * Aplicamos el filtro para saber si cumple el max longitud
+	 * @param user_name
+	 * @throws DomainException
+	 */
+	public void setUser_nombre(String user_name) throws DomainException {
 		if(Validator.cumpleLongitudMax(user_name,MAX_CARAC)) {
 			this.user_nombre=user_name;
-		}else//si no se cumple lanzamos el mensaje de error
-			throw new Exception(ErrorMessages.PROERR_002);
+		}else
+			throw new DomainException(ErrorMessages.PROERR_002);
 		
 	}
 
 	public String getUser_email() {
 		return user_email;
 	}
-
-	public void setUser_email(String user_email) throws Exception {
-		//aplicamos el filtro para saber si cumple el formato de email
+	/**
+	 * aplicamos el filtro para saber si cumple el formato de email
+	 * @param user_email
+	 * @throws DomainException
+	 */
+	public void setUser_email(String user_email) throws DomainException {
+		//
 		if(Validator.isEmailValido(user_email)) {
 			this.user_email=user_email;
-		}else//si no se cumple lanzamos el mensaje de error
-			throw new Exception(ErrorMessages.PROERR_001);
+		}else
+			throw new DomainException(ErrorMessages.PROERR_001);
 	}
 
 	public String getUser_pass() {
 		return user_pass;
 	}
-
-	public void setUser_pass(String user_pass) throws Exception {
-		//(aplicamos el formato de password valida
+	
+	/**
+	 * Aplicamos el formato de password válida
+	 * @param user_pass
+	 * @throws DomainException
+	 */
+	public void setUser_pass(String user_pass) throws DomainException {
+		//(
 		if(Validator.esPasswordValida(user_pass)){
 			this.user_pass=user_pass;
-		}else //si no se cumple lanzamos el mensaje de error
-			throw new Exception(ErrorMessages.PROERR_012);
+		}else 
+			throw new DomainException(ErrorMessages.PROERR_012);
 	}
 
 	public String getUser_dni() {
 		return user_dni;
 	}
-
-	public void setUser_dni(String user_dni) throws Exception {
-		//aplicamos el filtro para saber si se cumple el formato
+	
+	/**
+	 * Aplicamos el filtro para saber si se cumple el formato
+	 * @param user_dni
+	 * @throws DomainException
+	 */
+	public void setUser_dni(String user_dni) throws DomainException {
 		if(Validator.cumpleDNI(user_dni)) {
 			this.user_dni=user_dni;
-		}else//si no se cumple lanzamos el mensaje de error
-			throw new Exception(ErrorMessages.PROERR_012);
+		}else
+			throw new DomainException(ErrorMessages.PROERR_012);
 	}
 
 	public LocalDate getUser_fecAlta() {
@@ -117,11 +123,11 @@ public class Usuario {
 	 * @param user_fecAlta
 	 * @throws Exception
 	 */
-	public void setUser_fecAlta(LocalDate user_fecAlta) throws Exception {
+	public void setUser_fecAlta(LocalDate user_fecAlta) throws DomainException {
 		if(user_fecAlta.equals(FECHA_ACTUAL)) {
 			this.user_fecAlta=user_fecAlta;
 		}else
-			throw new Exception(ErrorMessages.PROERR_009);
+			throw new DomainException(ErrorMessages.PROERR_009);
 	}
 
 	public LocalDate getUser_fecConfirmacion() {
@@ -132,12 +138,11 @@ public class Usuario {
 	 * aplicamos filtro para comprobar que la fecha es igual a la actual
 	 * 
 	 */
-	public void setUser_fecConfirmacion(LocalDate user_fecConfirmacion) throws Exception {
-		
+	public void setUser_fecConfirmacion(LocalDate user_fecConfirmacion) throws DomainException {
 		if(user_fecConfirmacion.equals(FECHA_ACTUAL)) {
 			this.user_fecConfirmacion=user_fecConfirmacion;
-		}else//si no se cumple lanzamos el mensaje de error
-			throw new Exception(ErrorMessages.PROERR_009);
+		}else
+			throw new DomainException(ErrorMessages.PROERR_009);
 	}
 
 	public String getUser_pago() {

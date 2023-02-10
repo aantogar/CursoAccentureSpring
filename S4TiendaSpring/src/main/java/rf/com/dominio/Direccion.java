@@ -1,5 +1,6 @@
 package  rf.com.dominio;
 
+import rf.com.exception.DomainException;
 import rf.com.util.ErrorMessages;
 import rf.com.util.Validator;
 
@@ -42,12 +43,16 @@ public class Direccion {
 	public String getDir_nombre() {
 		return dir_nombre;
 	}
-	public void setDir_nombre(String dir_nombre) throws Exception {
-		//Aplicamos el filtro a para saber si cumple con max y min de longitud
+	/**
+	 * Aplicamos el filtro a para saber si cumple con max y min de longitud
+	 * @param dir_nombre
+	 * @throws DomainException
+	 */
+	public void setDir_nombre(String dir_nombre) throws DomainException {
 		if(Validator.cumpleLongitud(dir_nombre, MIN_CARAC, MAX_CARAC)) {
 			this.dir_nombre=dir_nombre;
-		}else // si no se cumple devolvemos la excepción
-			throw new Exception(ErrorMessages.PROERR_002);
+		}else 
+			throw new DomainException(ErrorMessages.PROERR_002);
 	}
 	public String getDir_direccion() {
 		return dir_direccion;

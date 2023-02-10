@@ -1,5 +1,6 @@
 package  rf.com.dominio;
 
+import rf.com.exception.DomainException;
 import rf.com.util.*;
 
 
@@ -60,12 +61,12 @@ public class Producto {
 	 * Aplicamos filtro para saber si cumple el patrón
 	 * 
 	 */
-	public void setId_producto(String id_producto) throws Exception {
+	public void setId_producto(String id_producto) throws DomainException {
 	
 		if(Validator.cumpleIdproduc(id_producto)){
 			this.id_producto=id_producto;
 		}else 
-			throw new Exception(ErrorMessages.PROERR_001);
+			throw new DomainException(ErrorMessages.PROERR_001);
 	}
 	
 	public String getPro_descripcion() {
@@ -77,11 +78,11 @@ public class Producto {
 	 * Aplicamos filtro para saber si cumple con la longitud máxima
 	 * 
 	 */
-	public void setPro_descripcion(String pro_descripcion) throws Exception {
+	public void setPro_descripcion(String pro_descripcion) throws DomainException {
 		if(Validator.cumpleLongitudMax(pro_descripcion,MAX_DESC_COR)){
 			this.pro_descripcion=pro_descripcion;
 		}else 
-			throw new Exception(ErrorMessages.PROERR_002);
+			throw new DomainException(ErrorMessages.PROERR_002);
 	}
 	public String getPro_desLarga() {
 		return pro_desLarga;
@@ -92,12 +93,12 @@ public class Producto {
 	 * Aplicamos filtro para saber si cumple con la longitud máxima
 	 * 
 	 */
-	public void setPro_desLarga(String pro_desLarga) throws Exception {
+	public void setPro_desLarga(String pro_desLarga) throws DomainException {
 		
 		if(Validator.cumpleLongitudMax(pro_desLarga,MAX_DESC_LAR)){
 			this.pro_desLarga=pro_desLarga;
 		}else 
-			throw new Exception(ErrorMessages.PROERR_002);
+			throw new DomainException(ErrorMessages.PROERR_002);
 	}
 	public double getPro_precio() {
 		return pro_precio;
@@ -108,19 +109,18 @@ public class Producto {
 	 * Aplicamos el filtro para que cumpla con los dos decimales
 	 * @throws Exception 
 	 */
-	public void setPro_precio(double pro_precio) throws Exception {
-		if(Validator.cumplePrecioProduc(pro_precio)){
-			this.pro_precio = pro_precio;
-		}else 
-			throw new Exception(ErrorMessages.PROERR_001);
-		
+	public void setPro_precio(double pro_precio){
+			this.pro_precio = pro_precio;	
 	}
+	
 	public int getStock() {
 		return stock;
 	}
+	
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
+	
 	public LocalDate getPro_fecRepos() {
 		return pro_fecRepos;
 	}
@@ -130,11 +130,11 @@ public class Producto {
 	 * Aplicamos el filtro de fecha minima o mayor a la actual
 	 * 
 	 */
-	public void setPro_fecRepos(LocalDate pro_fecRepos) throws Exception {
+	public void setPro_fecRepos(LocalDate pro_fecRepos) throws DomainException {
 		if(Validator.valDateMin(pro_fecRepos, LocalDate.now())) {
 			this.pro_fecRepos = pro_fecRepos;
 		}else {
-			throw new Exception(ErrorMessages.PROERR_007);
+			throw new DomainException(ErrorMessages.PROERR_007);
 		}
 	}
 
@@ -147,11 +147,11 @@ public class Producto {
 	 * Aplicamos el filtro de fecha minima para fecha activacion
 	 * 
 	 */
-	public void setPro_fecActi(LocalDate pro_fecActi) throws Exception {
+	public void setPro_fecActi(LocalDate pro_fecActi) throws DomainException {
 		if(Validator.valDateMin(pro_fecActi,FECHA_ACTUAL)){
 			this.pro_fecActi=pro_fecActi;
 		}else 
-			throw new Exception(ErrorMessages.PROERR_007);
+			throw new DomainException(ErrorMessages.PROERR_007);
 	}
 	public LocalDate getPro_fecDesacti() {
 		return pro_fecDesacti;
@@ -162,14 +162,14 @@ public class Producto {
 	 *  que sea superior a la actual.
 	 *  Si tiene fecha de activación, la fecha será superior a ésta.
 	 */
-	public void setPro_fecDesacti(LocalDate pro_fecDesacti) throws Exception {
+	public void setPro_fecDesacti(LocalDate pro_fecDesacti) throws DomainException {
 		if(pro_fecActi==null && Validator.valDateMin(pro_fecDesacti, FECHA_ACTUAL)) {
 			this.pro_fecDesacti=pro_fecDesacti;
 		}else if(pro_fecActi!=null) {
 			pro_fecDesacti.isAfter(pro_fecActi);
 			this.pro_fecDesacti=pro_fecDesacti;
 		}else
-			throw new Exception(ErrorMessages.PROERR_007);
+			throw new DomainException(ErrorMessages.PROERR_007);
 	}
 	
 	public String getPro_uniVenta() {
@@ -205,11 +205,11 @@ public class Producto {
 	 * Aplicamos filtro para saber si cumple con la longitud máxima
 	 * 
 	 */
-	public void setPro_usoRecomendado(String pro_usoRecomendado) throws Exception {
+	public void setPro_usoRecomendado(String pro_usoRecomendado) throws DomainException {
 		if(Validator.cumpleLongitudMax(pro_usoRecomendado,MAX_DESC_LAR)){
 			this.pro_usoRecomendado=pro_usoRecomendado;
 		}else 
-			throw new Exception(ErrorMessages.PROERR_002);
+			throw new DomainException(ErrorMessages.PROERR_002);
 	}
 	public int getId_categoria() {
 		return id_categoria;
@@ -244,11 +244,11 @@ public class Producto {
 	 * @param pro_stat
 	 * @throws Exception 
 	 */
-	public void setPro_stat(char pro_stat) throws Exception {
+	public void setPro_stat(char pro_stat) throws DomainException {
 		if(Validator.cumpleRangoStat(pro_stat, VALOR_A, VALOR_B)){
 			this.pro_stat = pro_stat;
 		}else 
-			throw new Exception(ErrorMessages.PROERR_012);
+			throw new DomainException(ErrorMessages.PROERR_012);
 		
 	}
 	

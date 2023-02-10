@@ -2,6 +2,8 @@ package rf.com.dominio;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,7 +23,7 @@ import rf.com.util.Validator;
  */
 @SuppressWarnings("serial")
 @Entity
-@Table(schema="ALUMNO_AAG",name = "CATEGORIES_AAG")
+@Table(schema="ALUMNO_AAG",name = "CATEGORIAS_AAG")
 public class Categoria implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -88,7 +90,8 @@ public class Categoria implements Serializable {
 		this.cat_descripcion = cat_descripcion;
 	}
 	
-	@Transient 
+	@Transient
+	@JsonIgnore
 	public boolean isValidInsert() {
 		boolean res=!Validator.isVacio(cat_nombre);
 		if(res)
@@ -98,6 +101,7 @@ public class Categoria implements Serializable {
 			return false;}
 	}
 	@Transient
+	@JsonIgnore
 	public boolean isValidUpdate() {
 		boolean res=!Validator.isVacio(cat_nombre) &&
 				id_categoria > 0;
