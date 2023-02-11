@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.micrometer.common.util.StringUtils;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,28 +12,44 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
-import rf.com.util.ErrorMessages;
+import rf.com.exception.DAOException;
+import rf.com.exception.DomainException;
+import rf.com.util.Messagesmessages;
 import rf.com.util.Validator;
 /**
  * 
  * Nombre		Categoria
  * Descripcion	Lista de categorías
  * @author 		Andrea Anton
- * @version		13 de abr. de 2016
+ * @version		10 de febr. de 2023
  *
  */
 @SuppressWarnings("serial")
 @Entity
 @Table(schema="ALUMNO_AAG",name = "CATEGORIAS_AAG")
 public class Categoria implements Serializable {
+	/**
+	 * Constantes para el filtro cat_nombre
+	 */
+	@JsonIgnore
+	@Transient
+	private final int LONG_MAX=50;
+	@JsonIgnore
+	@Transient
+	private final int LONG_MIN=5;
+	@JsonIgnore
+	@Transient
+	private final int MAX_DES=200;
+	
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id_categoria;			
 	
-	@Column(nullable=false)
+	@Column(nullable=false,length=50)
 	private String cat_nombre;	
 	
-	@Column(nullable=false)
+	@Column(nullable=true,length=200)
 	private String cat_descripcion;		
 	
 	
@@ -67,11 +84,15 @@ public class Categoria implements Serializable {
 	}
 	
 	/**
-	 * Setter para el nombre de categoria
+	 * Setter para el nombre de categoria aplicando filtro
 	 * 
 	 */
-	public void setCat_nombre(String cat_nombre) {
-		this.cat_nombre = cat_nombre;
+	public void setCat_nombre(String cat_nombre)throws DomainException {
+		if(Validator.cumpleLongitud(cat_nombre, LONG_MIN, LONG_MAX))
+			this.cat_nombre = cat_nombre;
+		else
+			throw new DomainException(Messagesmessages.PROERR_002);
+			
 	}
 	
 	/**
@@ -87,29 +108,32 @@ public class Categoria implements Serializable {
 	 * 
 	 */
 	public void setCat_descripcion(String cat_descripcion) {
-		this.cat_descripcion = cat_descripcion;
+		if(cat_descripcion!=null && cat_descripcion.length()<=MAX_DES)
+			this.cat_descripcion=StringUtils.truncate(cat_descripcion, MAX_DES);
+		else 
+			this.cat_descripcion.equals(null);
 	}
 	
 	@Transient
 	@JsonIgnore
-	public boolean isValidInsert() {
+	public boolean isValidInsert() throws DAOException {
 		boolean res=!Validator.isVacio(cat_nombre);
 		if(res)
 			return res;
 		else {
-			System.out.println(ErrorMessages.PROERR_013);
-			return false;}
+			throw new DAOException(Messagesmessages.PROERR_013);
+		}
 	}
 	@Transient
 	@JsonIgnore
-	public boolean isValidUpdate() {
+	public boolean isValidUpdate()throws DAOException {
 		boolean res=!Validator.isVacio(cat_nombre) &&
 				id_categoria > 0;
 		if(res)
 			return res;
 		else {
-			System.out.println(ErrorMessages.PROERR_013);
-			return false;}		
+			throw new DAOException(Messagesmessages.PROERR_013);
+		}			
 	}
 
 
@@ -151,8 +175,8 @@ public class Categoria implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Categoria [id_categoria=" + id_categoria + ", cat_nombre=" + cat_nombre + ", cat_descripcion="
-				+ cat_descripcion + "]";
+		return "♦ID->" + id_categoria +"  ♦ Nombre categoria->" + cat_nombre +
+				" "+ "   ♦Descripción categoria->"+ cat_descripcion+" "+" ";
 	}
 	
 	

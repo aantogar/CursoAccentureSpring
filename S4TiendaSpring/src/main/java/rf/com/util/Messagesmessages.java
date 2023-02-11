@@ -13,7 +13,7 @@ package rf.com.util;
  *  @author 	Miguel Garcia
  *  
  *  *****************************************************/
-public class ErrorMessages extends Exception{
+public class Messagesmessages extends Exception{
 	
 	
 		
@@ -60,7 +60,26 @@ public class ErrorMessages extends Exception{
 	 * Campo de Error para dominio Categoria isValidinsert/isValidUpdate
 	 */
 	public static final String PROERR_013="ERROR. No se puede insertar";
-	
-	
+	/**
+	 * Campos de error para Dao
+	 * 
+	 */
+	public static final String PROERR_014="ERROR. No se ha podido modificar el registro";
+	public static final String PROERR_015="ERROR. No se ha podido recuperar ningún registro";
+	public static final String PROERR_016="ERROR. No se ha podido guardar el registro";
+	public static final String PROERR_017="ERROR. No se ha podido eliminar el registro";
+	public static final String PROERR_018="ERROR. No se ha podido recuperar el registro";
 
-}
+	/**
+	 * Campos de Error para Categoria Controller
+	 */
+	public static final String[] PROERR_019={"ERROR 400: No existe registro solicitado."};
+	public static final String[] PROERR_020={"ERROR 500: Error de formato."};
+	public static final String[] PROERR_O21= {"STATUS 200: Registro eliminado"};
+	public static final String[] PROERR_O22={"ERROR 400: Error en formato de registro"};
+	public static final String PROERR_O23="STATUS 200: Acceso al registro.";
+	public static final String PROERR_O24="STATUS 200: Acceso todos los registros.";
+	public static final String[] PROERR_025={"STATUS 200: Registro actualizado"};
+	public static final String[] PROERR_026={"ERROR 500: No se ha podido acutalizar el registro"};
+	public static final String[] PROERR_027={"STATUS 200: Registro Guardado"};
+	}

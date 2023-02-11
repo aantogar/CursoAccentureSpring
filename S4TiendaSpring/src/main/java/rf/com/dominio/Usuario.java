@@ -3,22 +3,28 @@ package  rf.com.dominio;
 import rf.com.exception.DomainException;
 import rf.com.util.*;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Usuario {
-	/**
-	 * declaramos los atributos de la clase Usuario
-	 */
-	private static int id_usuario;
-	private String user_nombre;
-	private String user_email;
-	private String user_pass;
-	private int id_tipo;
-	private String user_dni;
-	private LocalDate user_fecAlta;
-	private LocalDate user_fecConfirmacion;
-	private String user_pago;
-	private String user_envio;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+/**
+ * 
+ * Nombre		Categoria
+ * Descripcion	Lista de categorías
+ * @author 		Andrea Anton
+ * @version		10 de febr. de 2023
+ *
+ */
+@SuppressWarnings("serial")
+@Entity
+@Table(schema="ALUMNO_AAG",name = "USUARIOS_AAG")
+public class Usuario implements Serializable {
+	
 	
 	/**
 	 * variables generadas para aplicar los filtros
@@ -26,27 +32,46 @@ public class Usuario {
 	private final LocalDate FECHA_ACTUAL=LocalDate.now();
 	private final int MAX_CARAC=200;
 	
-	/**
-	 * iniciamos un contador para autoincrementar el ID
-	 */
-	private static int contador=0;
 	
+	
+	/**
+	 * declaramos los atributos de la clase Usuario
+	 */
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private  int id_usuario;
+	
+	@Column(nullable=false,length=100)
+	private String user_nombre;
+	
+	@Column(nullable=false,unique=true,length=100)
+	private String user_email;
+	
+	@Column(nullable=false,length=20)
+	private String user_pass;
+	
+	@Column(nullable=false,length=20)
+	private int id_tipo;
+	private String user_dni;
+	private LocalDate user_fecAlta;
+	private LocalDate user_fecConfirmacion;
+	private String user_pago;
+	private String user_envio;
 	/**
 	 * generamos constructor vacio
 	 */
 	public Usuario() {
-		//autoincrementamos el ID
-		setId_usuario();	
+	
 	}
 	
 
 
-	public static int getId_usuario() {
-		return contador;
+	public  int getId_usuario() {
+		return id_usuario;
 	}
 
-	public static void setId_usuario() {
-		contador++;
+	public  void setId_usuario(int id_usuario) {
+		this.id_usuario=id_usuario;
 	}
 
 	public String getUser_name() {
@@ -62,7 +87,7 @@ public class Usuario {
 		if(Validator.cumpleLongitudMax(user_name,MAX_CARAC)) {
 			this.user_nombre=user_name;
 		}else
-			throw new DomainException(ErrorMessages.PROERR_002);
+			throw new DomainException(Messagesmessages.PROERR_002);
 		
 	}
 
@@ -79,7 +104,7 @@ public class Usuario {
 		if(Validator.isEmailValido(user_email)) {
 			this.user_email=user_email;
 		}else
-			throw new DomainException(ErrorMessages.PROERR_001);
+			throw new DomainException(Messagesmessages.PROERR_001);
 	}
 
 	public String getUser_pass() {
@@ -96,7 +121,7 @@ public class Usuario {
 		if(Validator.esPasswordValida(user_pass)){
 			this.user_pass=user_pass;
 		}else 
-			throw new DomainException(ErrorMessages.PROERR_012);
+			throw new DomainException(Messagesmessages.PROERR_012);
 	}
 
 	public String getUser_dni() {
@@ -112,7 +137,7 @@ public class Usuario {
 		if(Validator.cumpleDNI(user_dni)) {
 			this.user_dni=user_dni;
 		}else
-			throw new DomainException(ErrorMessages.PROERR_012);
+			throw new DomainException(Messagesmessages.PROERR_012);
 	}
 
 	public LocalDate getUser_fecAlta() {
@@ -127,7 +152,7 @@ public class Usuario {
 		if(user_fecAlta.equals(FECHA_ACTUAL)) {
 			this.user_fecAlta=user_fecAlta;
 		}else
-			throw new DomainException(ErrorMessages.PROERR_009);
+			throw new DomainException(Messagesmessages.PROERR_009);
 	}
 
 	public LocalDate getUser_fecConfirmacion() {
@@ -142,7 +167,7 @@ public class Usuario {
 		if(user_fecConfirmacion.equals(FECHA_ACTUAL)) {
 			this.user_fecConfirmacion=user_fecConfirmacion;
 		}else
-			throw new DomainException(ErrorMessages.PROERR_009);
+			throw new DomainException(Messagesmessages.PROERR_009);
 	}
 
 	public String getUser_pago() {

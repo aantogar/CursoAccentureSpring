@@ -41,9 +41,9 @@ public class Producto {
 	
 	/**
 	 * Constructor
-	 * @throws Exception
+	 * 
 	 */
-	public Producto() throws Exception {
+	public Producto() {
 
 		
 	}
@@ -66,7 +66,7 @@ public class Producto {
 		if(Validator.cumpleIdproduc(id_producto)){
 			this.id_producto=id_producto;
 		}else 
-			throw new DomainException(ErrorMessages.PROERR_001);
+			throw new DomainException(Messagesmessages.PROERR_001);
 	}
 	
 	public String getPro_descripcion() {
@@ -82,7 +82,7 @@ public class Producto {
 		if(Validator.cumpleLongitudMax(pro_descripcion,MAX_DESC_COR)){
 			this.pro_descripcion=pro_descripcion;
 		}else 
-			throw new DomainException(ErrorMessages.PROERR_002);
+			throw new DomainException(Messagesmessages.PROERR_002);
 	}
 	public String getPro_desLarga() {
 		return pro_desLarga;
@@ -98,7 +98,7 @@ public class Producto {
 		if(Validator.cumpleLongitudMax(pro_desLarga,MAX_DESC_LAR)){
 			this.pro_desLarga=pro_desLarga;
 		}else 
-			throw new DomainException(ErrorMessages.PROERR_002);
+			throw new DomainException(Messagesmessages.PROERR_002);
 	}
 	public double getPro_precio() {
 		return pro_precio;
@@ -134,7 +134,7 @@ public class Producto {
 		if(Validator.valDateMin(pro_fecRepos, LocalDate.now())) {
 			this.pro_fecRepos = pro_fecRepos;
 		}else {
-			throw new DomainException(ErrorMessages.PROERR_007);
+			throw new DomainException(Messagesmessages.PROERR_007);
 		}
 	}
 
@@ -151,7 +151,7 @@ public class Producto {
 		if(Validator.valDateMin(pro_fecActi,FECHA_ACTUAL)){
 			this.pro_fecActi=pro_fecActi;
 		}else 
-			throw new DomainException(ErrorMessages.PROERR_007);
+			throw new DomainException(Messagesmessages.PROERR_007);
 	}
 	public LocalDate getPro_fecDesacti() {
 		return pro_fecDesacti;
@@ -169,7 +169,7 @@ public class Producto {
 			pro_fecDesacti.isAfter(pro_fecActi);
 			this.pro_fecDesacti=pro_fecDesacti;
 		}else
-			throw new DomainException(ErrorMessages.PROERR_007);
+			throw new DomainException(Messagesmessages.PROERR_007);
 	}
 	
 	public String getPro_uniVenta() {
@@ -209,7 +209,7 @@ public class Producto {
 		if(Validator.cumpleLongitudMax(pro_usoRecomendado,MAX_DESC_LAR)){
 			this.pro_usoRecomendado=pro_usoRecomendado;
 		}else 
-			throw new DomainException(ErrorMessages.PROERR_002);
+			throw new DomainException(Messagesmessages.PROERR_002);
 	}
 	public int getId_categoria() {
 		return id_categoria;
@@ -248,7 +248,7 @@ public class Producto {
 		if(Validator.cumpleRangoStat(pro_stat, VALOR_A, VALOR_B)){
 			this.pro_stat = pro_stat;
 		}else 
-			throw new DomainException(ErrorMessages.PROERR_012);
+			throw new DomainException(Messagesmessages.PROERR_012);
 		
 	}
 	

@@ -26,11 +26,12 @@ class ProductoTest {
 		
 	
 	Producto prod;
-	private String PRO_DES_LAR;
+	
 	/**
 	 * Instanciamos un nuevo objeto de Producto
 	 * antes de cada test
-	 * @throws Exception
+	 * @throws Exception 
+	 * 
 	 */
 	@BeforeEach
 	void startObject() throws Exception {

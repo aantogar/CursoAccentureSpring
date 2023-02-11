@@ -1,7 +1,7 @@
 package  rf.com.dominio;
 
 import rf.com.exception.DomainException;
-import rf.com.util.ErrorMessages;
+import rf.com.util.Messagesmessages;
 import rf.com.util.Validator;
 
 public class Direccion {
@@ -46,7 +46,7 @@ public class Direccion {
 		if(Validator.cumpleLongitud(dir_nombre, MIN_CARAC, MAX_CARAC)) {
 			this.dir_nombre=dir_nombre;
 		}else 
-			throw new DomainException(ErrorMessages.PROERR_002);
+			throw new DomainException(Messagesmessages.PROERR_002);
 	}
 	public String getDir_direccion() {
 		return dir_direccion;
