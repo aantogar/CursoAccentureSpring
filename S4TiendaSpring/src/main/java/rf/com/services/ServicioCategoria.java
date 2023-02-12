@@ -28,13 +28,11 @@ public class ServicioCategoria  implements IServicioCategoria{
 		try { 
 			if(c.isValidInsert()) {
 				Categoria result=cDao.save(c);
-				return Messagesmessages.PROERR_027;
-			}else {
-				return Messagesmessages.PROERR_019;
-			}
-		}catch(NoSuchElementException e ) {
-			return Messagesmessages.PROERR_019;
+				return Messagesmessages.PROERR_027;}
+		}catch(NumberFormatException e ) {
+			return Messagesmessages.PROERR_020;
 		}
+		return Messagesmessages.PROERR_028;
 	}	
 	/**
 	 * Método que comprueba si el id
@@ -52,6 +50,8 @@ public class ServicioCategoria  implements IServicioCategoria{
 				}
 			}catch(NoSuchElementException e){
 				throw new DAOException(Messagesmessages.PROERR_019);
+			}catch(NumberFormatException e) {
+				return Messagesmessages.PROERR_020;
 			}
 			return (Messagesmessages.PROERR_019);
 		}
@@ -70,6 +70,8 @@ public class ServicioCategoria  implements IServicioCategoria{
 				}		
 			}catch (NoSuchElementException e) {	
 				return Messagesmessages.PROERR_O22;
+			}catch(NumberFormatException e) {
+				return Messagesmessages.PROERR_020;
 			}
 	}
 	
@@ -83,6 +85,8 @@ public class ServicioCategoria  implements IServicioCategoria{
 			return new String[] {repo+"",""+Messagesmessages.PROERR_O24};
 		}catch(NoSuchElementException e){
 			return Messagesmessages.PROERR_019;
+		}catch(NumberFormatException e) {
+			return Messagesmessages.PROERR_020;
 		}
 	}
 	
@@ -98,6 +102,8 @@ public class ServicioCategoria  implements IServicioCategoria{
 				return new String[] {result +"",""+Messagesmessages.PROERR_O23};
 			}catch(NoSuchElementException e) {
 				return Messagesmessages.PROERR_019;
+			}catch(NumberFormatException e) {
+				return Messagesmessages.PROERR_020;
 			}		
 		return Messagesmessages.PROERR_020;
 	}

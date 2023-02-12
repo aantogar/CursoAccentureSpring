@@ -27,7 +27,7 @@ import rf.com.util.Validator;
 @SuppressWarnings("serial")
 @Entity
 @Table(schema="ALUMNO_AAG",name = "CATEGORIAS_AAG")
-public class Categoria implements Serializable {
+public class Categoria implements Serializable,Auxiliar {
 	/**
 	 * Constantes para el filtro cat_nombre
 	 */
@@ -116,6 +116,7 @@ public class Categoria implements Serializable {
 	
 	@Transient
 	@JsonIgnore
+	@Override
 	public boolean isValidInsert() throws DAOException {
 		boolean res=!Validator.isVacio(cat_nombre);
 		if(res)
@@ -178,6 +179,7 @@ public class Categoria implements Serializable {
 		return "♦ID->" + id_categoria +"  ♦ Nombre categoria->" + cat_nombre +
 				" "+ "   ♦Descripción categoria->"+ cat_descripcion+" "+" ";
 	}
+
 	
 	
 }

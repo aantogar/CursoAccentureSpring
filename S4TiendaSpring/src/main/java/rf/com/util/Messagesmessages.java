@@ -82,4 +82,5 @@ public class Messagesmessages extends Exception{
 	public static final String[] PROERR_025={"STATUS 200: Registro actualizado"};
 	public static final String[] PROERR_026={"ERROR 500: No se ha podido acutalizar el registro"};
 	public static final String[] PROERR_027={"STATUS 200: Registro Guardado"};
+	public static final String[] PROERR_028={"ERROR 500: No se ha podido guardar el registro"};
 	}

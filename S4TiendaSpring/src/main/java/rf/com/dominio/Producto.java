@@ -1,41 +1,114 @@
 package  rf.com.dominio;
 
+import rf.com.exception.DAOException;
 import rf.com.exception.DomainException;
 import rf.com.util.*;
 
-
+import java.io.Serializable;
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.persistence.Transient;
 
 
-public class Producto {
-
+@Entity
+@Table(schema="ALUMNO_AAG", name = "Productos")
+public class Producto implements Serializable, Auxiliar{ 
+	/**
+	 * Propiedades de los atributos
+	 * en la BBDD
+	 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private String id_producto;
+	
+	@Column(nullable=false, length = 100)
 	private String pro_descripcion;
+	
+	@Column(nullable=true, length = 2000)
 	private String pro_desLarga;
+	
+	@Column(nullable=false, length = 100)
 	private double pro_precio;
+	
+	@Column(nullable=true)
 	private int stock;
+	
+	@Column(name = "FECHA_REPO", nullable = true)
+	@Temporal(TemporalType.DATE)
 	private LocalDate pro_fecRepos;
+	
+	@Column(name = "FECHA_ACTI", nullable = true)
+	@Temporal(TemporalType.DATE)
 	private LocalDate pro_fecActi;
+	
+	@Column(name = "FECHA_DESACTI", nullable = true)
+	@Temporal(TemporalType.DATE)
 	private LocalDate pro_fecDesacti;
+	
+	@Column(nullable=false,length=10)
 	private String pro_uniVenta;
+	
+	@Column(nullable=true)
 	private double pro_cantXUniVenta;
+	
+	@Column(nullable=true)
 	private String pro_uniUltNivel;
+	
+	@Column(nullable=false)
 	private  int id_pais;
+	
+	@Column(nullable=false,length=2000)
 	private String pro_usoRecomendado;
-	private static int id_categoria;
+	
+	@ManyToOne(targetEntity = Categoria.class, cascade=CascadeType.ALL, 
+			fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_categoria", nullable = false)
+	private int id_categoria;
+	
+	@Column(nullable=true)
 	private int pro_stkReservado;
+	
+	@Column(nullable=true)
 	private int pro_nStkAlto;
+	
+	@Column(nullable=true)
 	private int pro_nStkBajo;
+	
+	@Column(nullable=true,length=1)
 	private char pro_stat;
 	
 	/**
 	 * variables generadas para los filtros.
 	 */
+	@JsonIgnore
+	@Transient
 	private final LocalDate FECHA_ACTUAL=LocalDate.now();
+	@JsonIgnore
+	@Transient
 	private final int MAX_DESC_COR=100;
+	@JsonIgnore
+	@Transient
 	private final int MAX_DESC_LAR=2000;
+	@JsonIgnore
+	@Transient
 	private final char VALOR_A='A';
+	@JsonIgnore
+	@Transient
 	private final char VALOR_B='B';
 	
 	
@@ -52,6 +125,7 @@ public class Producto {
 	 * Generamos getters and setters
 	 * 
 	 */
+	@Transient
 	public String getId_producto() {
 		return id_producto;
 	}
@@ -252,6 +326,23 @@ public class Producto {
 		
 	}
 	
+	@JsonIgnore
+	@Transient
+	@Override
+	public boolean isValidInsert() throws DAOException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@JsonIgnore
+	@Transient
+	@Override
+	public boolean isValidUpdate() throws DAOException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+
+
 	
 	
 
