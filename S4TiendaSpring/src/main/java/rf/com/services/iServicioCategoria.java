@@ -14,8 +14,8 @@ public interface IServicioCategoria{
 	public String[] insertRegistro(Categoria c)throws DAOException;
 	public String[] updateRegistro(Categoria c)throws DAOException;
 	public String[] deleteById(int id);
-	public String[]readAll()throws DAOException;
-	public String[] readOne(String id)throws DAOException;
+	public String[]readAll();
+	public String[] readOne(String id);
 	
 
 }

@@ -7,6 +7,8 @@ import rf.com.util.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
@@ -32,8 +34,10 @@ public class Producto implements Serializable, Auxiliar{
 	 * Propiedades de los atributos
 	 * en la BBDD
 	 */
-	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+
+    @Id
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
 	private String id_producto;
 	
 	@Column(nullable=false, length = 100)
@@ -42,7 +46,7 @@ public class Producto implements Serializable, Auxiliar{
 	@Column(nullable=true, length = 2000)
 	private String pro_desLarga;
 	
-	@Column(nullable=false, length = 100)
+	@Column(nullable=false)
 	private double pro_precio;
 	
 	@Column(nullable=true)
@@ -330,15 +334,27 @@ public class Producto implements Serializable, Auxiliar{
 	@Transient
 	@Override
 	public boolean isValidInsert() throws DAOException {
-		// TODO Auto-generated method stub
-		return false;
+		boolean res=!Validator.isVacio(pro_descripcion) && 
+				pro_precio!=0 && !Validator.isVacio(pro_uniVenta)
+				&& id_pais!=0;
+		if(res)
+			return res;
+		else {
+			throw new DAOException(Messagesmessages.PROERR_013);
+		}
 	}
 	@JsonIgnore
 	@Transient
 	@Override
 	public boolean isValidUpdate() throws DAOException {
-		// TODO Auto-generated method stub
-		return false;
+		boolean res=!Validator.isVacio(pro_descripcion) &&
+				pro_precio!=0 && !Validator.isVacio(pro_uniVenta)
+				&& id_pais!=0 && id_producto!=null && id_categoria>0;
+		if(res)
+			return res;
+		else {
+			throw new DAOException(Messagesmessages.PROERR_013);
+		}			
 	}
 	
 
